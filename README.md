@@ -1,13 +1,11 @@
 # AngularMeanstackAuthentication
 
-Angular 8 JWT User Authentication Tutorial - Learn how to build and implement JSON web token (JWT) based user authentication system in Angular 8 or 9 app.
-
-[Angular 8 JWT User Authentication Tutorial](https://www.positronx.io/angular-jwt-user-authentication-tutorial/)
+Angular 8 JWT User Authentication to implement JSON web token (JWT) based user authentication system in Angular 8 or 9 app.
 
 
 ## Clone Token-Based Auth API
 Clone the repo inside the Angular's root folder.
-* `git clone https://github.com/SinghDigamber/node-token-based-authentication.git`
+* `git clone https://github.com/Gabkings/node-token-based-authentication.git`
 
 ## Start the Node Server
 * Run `npm install` to install required packages
