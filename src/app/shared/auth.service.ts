@@ -15,17 +15,16 @@ export class AuthService {
   endpoint: string = 'http://localhost:4000/api';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
+
   constructor(private http: HttpClient, public router: Router) {}
 
-  //sign up
-
+  // Sign-up
   signUp(user: User): Observable<any> {
     let api = `${this.endpoint}/register-user`;
     return this.http.post(api, user).pipe(catchError(this.handleError));
   }
 
-  //signin
-
+  // Sign-in
   signIn(user: User) {
     return this.http
       .post<any>(`${this.endpoint}/signin`, user)
@@ -38,15 +37,12 @@ export class AuthService {
       });
   }
 
-  //getoken
-
   getToken() {
     return localStorage.getItem('access_token');
   }
 
-  //check login status
   get isLoggedIn(): boolean {
-    let authToken = localStorage.removeItem('access_token');
+    let authToken = localStorage.getItem('access_token');
     return authToken !== null ? true : false;
   }
 
@@ -57,7 +53,7 @@ export class AuthService {
     }
   }
 
-  //User profile
+  // User profile
   getUserProfile(id): Observable<any> {
     let api = `${this.endpoint}/user-profile/${id}`;
     return this.http.get(api, { headers: this.headers }).pipe(
@@ -72,10 +68,11 @@ export class AuthService {
   handleError(error: HttpErrorResponse) {
     let msg = '';
     if (error.error instanceof ErrorEvent) {
-      //client side error
+      // client-side error
       msg = error.error.message;
     } else {
-      msg = `Error Code: ${error.status}\n Message : ${error.message}`;
+      // server-side error
+      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(msg);
   }
