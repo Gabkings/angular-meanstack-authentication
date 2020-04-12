@@ -1,11 +1,23 @@
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { SigninComponent } from './components/signin/signin.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './shared/auth.guard';
 
-
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', redirectTo: '/log-in', pathMatch: 'full' },
+  { path: 'log-in', component: SigninComponent },
+  { path: 'sign-up', component: SignupComponent },
+  {
+    path: 'user-profile/:id',
+    component: UserProfileComponent,
+    canActivate: [AuthGuard],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
